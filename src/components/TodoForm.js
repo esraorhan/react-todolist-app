@@ -1,22 +1,28 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
-export const TodoForm = () => {
-const [value,setValue] =useState("");
+export const TodoForm = ({ addTodo }) => {
+  const [value, setValue] = useState("");
 
-const handleSubmit = e =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
-}
+    
+    addTodo(value);
+
+    setValue("");
+  };
 
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>
       <input
         type="text"
         className="todo-input"
+        value={value}
         placeholder="Bu gün ne yapacaksın?"
-        onChange={(e) =>setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
-      <button type="submit" className="todo-btn">Görev Ekle</button>
+      <button type="submit" className="todo-btn">
+        Görev Ekle
+      </button>
     </form>
   );
 };
